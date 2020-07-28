@@ -1,0 +1,56 @@
+
+.logo{
+font-weight: bold;
+color: #F5992E;
+}
+
+.bg-blue{
+    background-color: #21243B;
+}
+
+.link{
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    padding: 15px;
+}
+
+.navbar{
+    padding-bottom: 0px;
+}
+
+.link:hover{
+    text-decoration: none;
+    color: #fff;
+    border-bottom: solid 4px #F5992E;
+    
+}
+
+@media (min-width: 240px) and (max-width: 990px) { 
+    .navbar{
+        padding-bottom: 15px;
+    }
+ }
+
+ .hero{
+     padding: 10vh;
+     background: url('app/images/background.jpg') no-repeat center;
+     background-size: cover;
+     width: 100%;
+     height: auto;
+ }
+
+ .spacing{
+     padding-top: 30px;
+ }
+
+ .card{
+     background: #21243B;
+     color: #fff;
+ }
+
+
+
+
+
+
