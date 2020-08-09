@@ -1,6 +1,7 @@
 package com.diplomski.model;
 
 import lombok.*;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -12,6 +13,8 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
+@Where(clause="deleted=0")
+@Table(name = "days")
 public class Day {
 
     @Id
@@ -23,4 +26,7 @@ public class Day {
 
     @OneToMany(cascade = CascadeType.REFRESH)
     private Set<TrainingDay> trainingDays = new HashSet<>();
+
+    @Column
+    private boolean deleted;
 }

@@ -1,0 +1,13 @@
+<div class="row spacing">
+    <div class="card" style="width: 100%; border-left: solid 10px #F19529">
+        <div class="card-body">
+            <h5 class="card-title">{{weekTraining.allTrainings[0].day}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{weekTraining.date}}</h6>
+            <p class="card-text">Trainings on this day: </p>
+            <p *ngFor="let training of trainings">
+                {{training.training.name}} {{training.startsAt}}
+            </p>
+            <a href="#" class="btn btn-secondary">Schedule training</a>
+        </div>
+    </div>
+</div>

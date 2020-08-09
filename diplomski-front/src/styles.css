@@ -1,7 +1,16 @@
-
 .logo{
 font-weight: bold;
 color: #F5992E;
+font-size: 25px;
+}
+
+.logo:hover{
+    color: #fff;
+    opacity: 0.8;
+}
+
+a:hover{
+    text-decoration: none;
 }
 
 .bg-blue{
@@ -22,8 +31,7 @@ color: #F5992E;
 .link:hover{
     text-decoration: none;
     color: #fff;
-    border-bottom: solid 4px #F5992E;
-    
+    border-bottom: #F5992E solid 4px;
 }
 
 @media (min-width: 240px) and (max-width: 990px) { 
@@ -32,13 +40,22 @@ color: #F5992E;
     }
  }
 
- .hero{
-     padding: 10vh;
-     background: url('app/images/background.jpg') no-repeat center;
-     background-size: cover;
-     width: 100%;
-     height: auto;
- }
+.hero{
+    padding: 10vh;
+    background: url('app/images/background.jpg') no-repeat center;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+}
+
+ #banner{
+    padding: 10vh;
+    background: url('app/images/background.jpg') no-repeat center;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    padding: 12vh 0;
+}
 
  .spacing{
      padding-top: 30px;
@@ -48,6 +65,56 @@ color: #F5992E;
      background: #21243B;
      color: #fff;
  }
+
+ #banner .card-over{
+    width: 40% !important;
+    margin-left: 35%;
+    background: rgb(37, 45, 64, 0.7);
+}
+
+
+@media (min-width: 504px) and (max-width: 990px) { 
+    #banner .card-over{
+        width: 50% !important;
+        margin-left: 25%;
+        background: rgb(37, 45, 64, 0.7);
+    }
+ }
+
+ @media (min-width: 240px) and (max-width: 505px) { 
+    #banner .card-over{
+        width: 90% !important;
+        margin-left: 5%;
+        background: rgb(37, 45, 64, 0.7);
+    }
+ }
+
+
+.input-group{
+    display: inline-block;
+    padding-bottom: 0.8em;
+}
+
+
+
+.btn-orange{
+    background: #F5992E;
+    padding: 5px 10px ;
+    border: none;
+    color: #252D40;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.btn-orange:hover{
+    background-color: #252D40;
+    color: #F5992E;
+}
+
+input{
+    padding: 3px 5px;
+    width: 16em;
+}
 
 
 

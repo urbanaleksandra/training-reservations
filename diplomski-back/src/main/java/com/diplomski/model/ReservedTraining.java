@@ -1,6 +1,7 @@
 package com.diplomski.model;
 
 import lombok.*;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
+@Where(clause="deleted=0")
 public class ReservedTraining {
 
     @Id
@@ -19,9 +21,14 @@ public class ReservedTraining {
     @Column
     private boolean attended;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "trainingDay_id", referencedColumnName = "id")
     private TrainingDay trainingDay;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "simpleUser_id", referencedColumnName = "id")
     private SimpleUser simpleUser;
+
+    @Column
+    private boolean deleted;
 }

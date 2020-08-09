@@ -1,10 +1,13 @@
 package com.diplomski.model;
 
+import org.hibernate.annotations.Where;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
 @Entity
+@Where(clause="deleted=0")
+@Table(name = "permission")
 public class Permission implements GrantedAuthority {
 
     @Id
@@ -13,6 +16,9 @@ public class Permission implements GrantedAuthority {
 
     @Column
     protected String name;
+
+    @Column
+    private boolean deleted;
 
     public Long getId() {
         return id;

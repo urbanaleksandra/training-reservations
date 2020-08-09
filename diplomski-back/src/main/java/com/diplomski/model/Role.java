@@ -1,12 +1,15 @@
 package com.diplomski.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Where(clause="deleted=0")
+@Table(name = "roles")
 public class Role {
 
     @Id
@@ -15,6 +18,9 @@ public class Role {
 
     @Column
     protected  String name;
+
+    @Column
+    private boolean deleted;
 
     @JsonBackReference
     @ManyToMany(mappedBy = "roles")
