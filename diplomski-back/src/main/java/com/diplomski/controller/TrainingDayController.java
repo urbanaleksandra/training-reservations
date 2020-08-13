@@ -1,14 +1,14 @@
 package com.diplomski.controller;
 
+import com.diplomski.dto.ReservedTrainingDTO;
 import com.diplomski.dto.WeekTrainingDTO;
+import com.diplomski.model.ReservedTraining;
 import com.diplomski.model.User;
 import com.diplomski.service.TrainingDayService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +24,6 @@ public class TrainingDayController {
     public List<WeekTrainingDTO> getAll() {
         return trainingDayService.getAll();
     }
+
 
 }

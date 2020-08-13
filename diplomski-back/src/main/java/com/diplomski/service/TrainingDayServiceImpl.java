@@ -35,10 +35,10 @@ public class TrainingDayServiceImpl implements TrainingDayService{
     @Override
     public List<WeekTrainingDTO> getAll() {
 
-        Format dateFormat = new SimpleDateFormat("EEE,dd-MM-yyyy");
+        Format dateFormat = new SimpleDateFormat("EEE,MM-dd-yyyy");
         String res = dateFormat.format(new Date());
 
-        Format dateFormat1 = new SimpleDateFormat("dd-MM-yyyy");
+        Format dateFormat1 = new SimpleDateFormat("MM-dd-yyyy");
         String todayDate = dateFormat1.format(new Date(System.currentTimeMillis()));
 
         String plusOneDay = dateFormat1.format(new Date(System.currentTimeMillis() + 86400000));

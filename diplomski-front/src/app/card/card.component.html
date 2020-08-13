@@ -1,13 +1,29 @@
 <div class="row spacing">
-    <div class="card" style="width: 100%; border-left: solid 10px #F19529">
-        <div class="card-body">
-            <h5 class="card-title">{{weekTraining.allTrainings[0].day}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{weekTraining.date}}</h6>
-            <p class="card-text">Trainings on this day: </p>
-            <p *ngFor="let training of trainings">
-                {{training.training.name}} {{training.startsAt}}
-            </p>
-            <a href="#" class="btn btn-secondary">Schedule training</a>
+    <div class="card" style="width: 100%; border-left: solid 10px #F19529;">
+        <div class="card-body row" >
+            <div class="div1" style="padding-left: 10px;">
+                <h5 class="card-title">{{training.training.name}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{training.training.description}}</h6>
+                <p class="card-text">{{training.trainer}}</p>
+            </div>
+
+            <div class="div1" style="margin-top: 17px; padding-left: 20px;">
+                <p class="card-text">{{training.startsAt}}h - {{endTime}}h</p>
+            </div>
+
+            <div class="div1" style="margin-top: 17px; color: #F19529;">
+                <p class="card-text">Remaining places: {{left}} / {{training.training.capacity}}</p>
+            </div>
+
+            <div *ngIf="isSimpleUser()" class="div2">
+                <a (click)="schedule()" class="btn btn-secondary">Schedule training</a><br>
+                <small class="small1" *ngIf="alreadySchedule">{{message}}</small>
+            </div>
+
+            <div *ngIf="isAdmin()" class="div2 row">
+                <a class="btn btn-secondary updateDelete">Update</a><br>
+                <a class="btn btn-secondary updateDelete">Delete</a><br>
+            </div>
         </div>
     </div>
 </div>

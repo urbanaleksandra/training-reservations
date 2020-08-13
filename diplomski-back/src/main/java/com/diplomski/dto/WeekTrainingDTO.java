@@ -5,7 +5,7 @@ import java.util.List;
 
 public class WeekTrainingDTO {
 
-    //jedan dan u nedelji
+    //jedan dan u nedelji - zbog datuma
 
     private List<TrainingDayDTO> allTrainings;
     private String date;

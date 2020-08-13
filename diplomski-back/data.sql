@@ -1,11 +1,11 @@
 insert into user (username, password, first_name, last_name, email, enabled, deleted) values
 	('admin', '$2y$10$spitzJHmgij39g/9Ff/nOeJSIkyrwvoNUO7e24RElpt7JRmij9w26', 'Aleksandra', 'Urban', 'admin@gmail.com', true, false),
-    ('GYM-pera97', '$2y$10$zJi79nXnk.w8V.7xFbOw6eCGbIfujCZv38D1lQ5H43uTmLKFgdeQu', 'Pera', 'Peric', 'pera@gmail.com', true, false),
-    ('GYM-mika97', '$2y$10$jDJCmiFoBVtG5/D8ILbv7OuLMtR85LgjWUgh6eSGS49QfjxlQaGLO', 'Mika', 'Mikic', 'mika@gmail.com', true, false),
-    ('somi97', '$2y$10$Z6A.ETXQkqLuJZEGMmdbX.yEftATGQN02GQ84Max61JTH1/A30f2y', 'Mihailo', 'Stanarevic', 'somi@gmail.com', true, false),
-    ('kaja97', '$2y$10$awynJ9wp//qI5jaqcHmsC.GfKbhTXlFiQHOCggQTVjz9Qzi1r5Azy', 'Katarina', 'Urban', 'kacakaca5@gmail.com', true, false),
-    ('maja91', '$2y$10$AJNco0CyJWMW8307CVeX4eKd/GZ1Vr8nH6hTpmIhoI0JbCriNGLwe', 'Maja', 'Urban', 'maja@gmail.com', true, false),
-	('pera97', '$2y$10$fnHyh8Am3.vluyn78qXrlOYuskGcNLg2QwW17ByGI0zBNuzqPciKK', 'Pera', 'Peric', 'pera@gmail.com', true, false);
+    ('GYM-pera97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Pera', 'Peric', 'pera@gmail.com', true, false),
+    ('GYM-mika97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Mika', 'Mikic', 'mika@gmail.com', true, false),
+    ('somi97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Mihailo', 'Stanarevic', 'somi@gmail.com', true, false),
+    ('kaja97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Katarina', 'Urban', 'kacakaca5@gmail.com', true, false),
+    ('maja91', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Maja', 'Urban', 'maja@gmail.com', true, false),
+	('pera97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Pera', 'Peric', 'pera@gmail.com', true, false);
 insert into admin (id, user_id, deleted) values (1, 1, false);
 
 insert into employee (id, user_id, deleted) values
