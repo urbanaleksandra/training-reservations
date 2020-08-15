@@ -49,7 +49,7 @@ export class HomePageComponent implements OnInit {
 
       const source = timer(0, 2000);
 
-      if(this.isSimpleUser()){
+      if(this.isSimpleUser() || this.isEmployee()){
         source.subscribe(x => {
           this.firstInWeek = new Date(this.date);
   

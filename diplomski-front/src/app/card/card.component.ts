@@ -4,6 +4,8 @@ import { UserService } from '../service/user.service';
 import { TrainingService } from '../service/training.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../service/login.service';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmArrivalComponent } from '../confirm-arrival/confirm-arrival.component';
 
 @Component({
   selector: 'app-card',
@@ -12,7 +14,7 @@ import { LoginService } from '../service/login.service';
 })
 export class CardComponent implements OnInit {
 
-  constructor(private router: Router, private userService: UserService, private trainingService: TrainingService, private loginService : LoginService, public service: UserService) { }
+  constructor(private modalService: NgbModal, private router: Router, private userService: UserService, private trainingService: TrainingService, private loginService : LoginService, public service: UserService) { }
 
   @Input() training: TrainingDay;
   @Input() date : string;
@@ -87,6 +89,12 @@ export class CardComponent implements OnInit {
     }
   }
 
+  confirmArrival(){
+    const modalRef = this.modalService.open(ConfirmArrivalComponent);
+    modalRef.componentInstance.training = this.training;
+    modalRef.componentInstance.date = this.date;
+  }
+
   schedule() {
 
     if (!this.isFull()) {
@@ -102,6 +110,8 @@ export class CardComponent implements OnInit {
           this.getNumberOfScheduled(this.training);
 
         }, error => {
+
+          console.log(error);
 
           if (error.status === 400) {
             console.log(error);

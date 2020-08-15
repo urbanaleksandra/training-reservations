@@ -10,7 +10,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  private access_token = null;
+  public access_token = null;
 
   login(user: UserLogin) {
     return this.http.post('http://localhost:9000/auth/login', user)
@@ -33,7 +33,11 @@ export class LoginService {
   }
 
   isTokenValid() {
-      return this.access_token != "error";
+    if(this.access_token == null || this.access_token == 'error'){
+      return false;
+    }else{
+      return true;
+    }
   }
 
   removeToken() {

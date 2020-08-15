@@ -1,0 +1,22 @@
+.color{
+    background-color: #252D40;
+    color: white;
+}
+
+.buttonDetails{
+    border-radius: 4px;
+    background-color: #252D40;
+    border: #F5992E solid 3px;
+    color: #F5992E;
+    text-align: center;
+    font-size: 18px;
+    padding: 5px;
+    width: 100px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.small1{
+    color: #F19529;
+  }

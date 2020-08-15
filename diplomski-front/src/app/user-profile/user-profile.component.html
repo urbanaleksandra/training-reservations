@@ -1,0 +1,41 @@
+<header>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-blue">
+      <div class="container">
+        <a class="logo" href="#" routerLinkActive='active' [routerLink]="['/home-page']">GYM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse  justify-content-end navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+
+            <li class="nav-item">
+              <a class="link" routerLinkActive='active' [routerLink]="['/home-page']">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="link" style="color: #ffff;">Profile</a>
+            </li>
+            <!-- info -->
+            <li class="nav-item">
+              <a class="link" style="color: #ffff;">About us</a>
+            </li>
+            <li class="nav-item">
+              <a class="link" style="color: #ffff;" (click)="logout()">Log out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+  
+        <h3 style="color: #ffff">Welcome, {{user.firstName}} {{user.lastName}}</h3>
+        <h4 style="color: #F5992E"><i class="fa fa-user"> {{user.username}}</i></h4>
+        <h4 style="color: #F5992E; margin-bottom: 5%;"><i class="fa fa-envelope-o">  {{user.email}}</i></h4>
+
+        <qrcode [level]="2" [qrvalue]="value"></qrcode>
+  
+    </div>
+  </section>

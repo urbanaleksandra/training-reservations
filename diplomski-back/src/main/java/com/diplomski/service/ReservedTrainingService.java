@@ -7,6 +7,8 @@ public interface ReservedTrainingService {
 
     ResponseEntity<?> schedule(ReservedTrainingDTO reservedTrainingDTO);
 
+    ResponseEntity<?> confirmArrival(ReservedTrainingDTO reservedTrainingDTO);
+
     int getNumberOfScheduled(Long id);
 
 }

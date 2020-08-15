@@ -24,6 +24,10 @@
                 <a class="btn btn-secondary updateDelete">Update</a><br>
                 <a class="btn btn-secondary updateDelete">Delete</a><br>
             </div>
+
+            <div *ngIf="isEmployee()" class="div2 row">
+                <a (click)="confirmArrival()" style="height: 50%;" class="btn btn-secondary">Confirm arrival</a>
+            </div>
         </div>
     </div>
 </div>

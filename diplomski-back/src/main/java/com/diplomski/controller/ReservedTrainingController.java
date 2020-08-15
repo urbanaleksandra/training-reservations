@@ -24,4 +24,9 @@ public class ReservedTrainingController {
     public int getNumberOfScheduled(@PathVariable Long id) {
         return reservedTrainingService.getNumberOfScheduled(id);
     }
+
+    @PostMapping(value = "confirm-arrival")
+    public ResponseEntity<?> confirmArrival(@RequestBody ReservedTrainingDTO reservedTrainingDTO){
+        return reservedTrainingService.confirmArrival(reservedTrainingDTO);
+    }
 }

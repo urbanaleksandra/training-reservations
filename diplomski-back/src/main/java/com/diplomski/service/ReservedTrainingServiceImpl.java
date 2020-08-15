@@ -60,6 +60,34 @@ public class ReservedTrainingServiceImpl implements ReservedTrainingService {
     }
 
     @Override
+    public ResponseEntity<?> confirmArrival(ReservedTrainingDTO reservedTrainingDTO) {
+
+        System.out.println("usao u confirmArrival" + reservedTrainingDTO);
+
+        User user = userRepository.findByUsername(reservedTrainingDTO.getSimpleUser());
+        SimpleUser simpleUser = simpleUserRepository.findByUser(user);
+        List<ReservedTraining> alreadyReserved = reservedTrainingRepository.findBySimpleUser(simpleUser);
+
+        System.out.println(alreadyReserved);
+        if(alreadyReserved.size() > 0){
+            for(ReservedTraining rt : alreadyReserved){
+                if(rt.getTrainingDay().getId().equals(reservedTrainingDTO.getTrainingDay().getId()) && rt.getDate().equals(reservedTrainingDTO.getDate())){
+                    if(rt.isAttended() == false){
+                        rt.setAttended(true);
+                        reservedTrainingRepository.save(rt);
+                        return new ResponseEntity<String>("OK", HttpStatus.OK);
+                    }else{
+                        return new ResponseEntity<String>("Already arrived.", HttpStatus.BAD_REQUEST);
+                    }
+                }
+            }
+        }
+
+        return new ResponseEntity<String>("No schedule training for this user.", HttpStatus.BAD_REQUEST);
+
+    }
+
+    @Override
     public int getNumberOfScheduled(Long id) {
 
         Optional<TrainingDay> trainingDay = trainingDayRepository.findById(id);

@@ -17,14 +17,14 @@
             <a class="link" routerLinkActive='active' [routerLink]="['/home-page']">Home</a>
           </li>
           <li *ngIf="isSimpleUser()" class="nav-item">
-            <a class="link" >Profile</a>
+            <a class="link" style="color: #ffff;" routerLinkActive='active' [routerLink]="['/user-profile']">Profile</a>
           </li>
           <!-- info -->
           <li *ngIf="isSimpleUser()" class="nav-item">
-            <a class="link" >About us</a>
+            <a class="link" style="color: #ffff;">About us</a>
           </li>
           <li class="nav-item">
-            <a class="link" href="#">Log out</a>
+            <a class="link" (click)="logout()" style="color: #ffff;">Log out</a>
           </li>
         </ul>
       </div>

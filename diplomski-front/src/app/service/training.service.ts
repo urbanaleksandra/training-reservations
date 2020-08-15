@@ -22,4 +22,8 @@ export class TrainingService {
   getNumberOfScheduled(id : number){
     return this.http.get<any>(`http://localhost:9000/reserved-training/${id}`);
   }
+
+  confirmArrival(body : any){
+    return this.http.post('http://localhost:9000/reserved-training/confirm-arrival', body);
+  }
 }
