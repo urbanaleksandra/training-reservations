@@ -6,12 +6,23 @@ public class ReservedTrainingDTO {
 
     private String simpleUser;
 
+    private String date;
+
     public ReservedTrainingDTO() {
     }
 
-    public ReservedTrainingDTO(TrainingDayDTO trainingDay, String simpleUser) {
+    public ReservedTrainingDTO(TrainingDayDTO trainingDay, String simpleUser, String date) {
         this.trainingDay = trainingDay;
         this.simpleUser = simpleUser;
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public TrainingDayDTO getTrainingDay() {

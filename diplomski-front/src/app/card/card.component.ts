@@ -92,7 +92,8 @@ export class CardComponent implements OnInit {
     if (!this.isFull()) {
       let body = {
         'trainingDay': this.training,
-        'simpleUser': this.userService.currentUser.username
+        'simpleUser': this.userService.currentUser.username,
+        'date' : this.date
       }
 
       this.trainingService.scheduleTraining(body).subscribe(

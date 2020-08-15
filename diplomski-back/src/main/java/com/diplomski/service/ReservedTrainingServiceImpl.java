@@ -36,6 +36,7 @@ public class ReservedTrainingServiceImpl implements ReservedTrainingService {
         ReservedTraining reservedTraining = new ReservedTraining();
         reservedTraining.setDeleted(false);
         reservedTraining.setAttended(false);
+        reservedTraining.setDate(reservedTrainingDTO.getDate());
 
         Optional<TrainingDay> trainingDay = trainingDayRepository.findById(reservedTrainingDTO.getTrainingDay().getId());
         reservedTraining.setTrainingDay(trainingDay.get());
@@ -48,7 +49,7 @@ public class ReservedTrainingServiceImpl implements ReservedTrainingService {
 
         if(alreadyReserved != null){
             for(ReservedTraining rt : alreadyReserved){
-                if(rt.getTrainingDay().getId().equals(trainingDay.get().getId())){
+                if(rt.getTrainingDay().getId().equals(trainingDay.get().getId()) && rt.getDate().equals(reservedTrainingDTO.getDate())){
                     return new ResponseEntity<String>("Already schedule.", HttpStatus.BAD_REQUEST);
                 }
             }

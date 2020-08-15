@@ -12,6 +12,7 @@ import { TokenInterceptor } from './interceptor/TokenInterceptor';
 import { LoginService } from './service/login.service';
 import { CardComponent } from './card/card.component';
 import { ConfirmAccountComponent } from './confirm-account/confirm-account.component';
+import { NewTrainingDialogComponent } from './new-training-dialog/new-training-dialog.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +21,10 @@ import { ConfirmAccountComponent } from './confirm-account/confirm-account.compo
     LoginComponent,
     RegistrationComponent,
     CardComponent,
-    ConfirmAccountComponent
+    ConfirmAccountComponent,
+    NewTrainingDialogComponent
   ],
+  entryComponents: [NewTrainingDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

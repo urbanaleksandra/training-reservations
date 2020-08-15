@@ -8,15 +8,20 @@
       </button>
       <div class="collapse  justify-content-end navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
+
+          <li *ngIf="isAdmin()" class="nav-item">
+            <a class="link" style="color: #F19529;" (click)="openNewTrainingDialog()">Add new training</a>
+          </li>
+
           <li class="nav-item">
-            <a class="link" href="#" routerLinkActive='active' [routerLink]="['/home-page']">Home</a>
+            <a class="link" routerLinkActive='active' [routerLink]="['/home-page']">Home</a>
           </li>
           <li *ngIf="isSimpleUser()" class="nav-item">
-            <a class="link" href="#">Profile</a>
+            <a class="link" >Profile</a>
           </li>
           <!-- info -->
           <li *ngIf="isSimpleUser()" class="nav-item">
-            <a class="link" href="#">About us</a>
+            <a class="link" >About us</a>
           </li>
           <li class="nav-item">
             <a class="link" href="#">Log out</a>
@@ -44,6 +49,7 @@
     <div *ngFor="let training of trainings">
       <app-card [date]="date" [training]="training"></app-card>
     </div>
+
 
   </div>
 </section>

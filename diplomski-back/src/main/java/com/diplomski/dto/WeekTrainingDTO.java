@@ -5,13 +5,22 @@ import java.util.List;
 
 public class WeekTrainingDTO {
 
-    //jedan dan u nedelji - zbog datuma
+    //jedan dan u nedelji - zbog datuma i dana u nedelji
 
     private List<TrainingDayDTO> allTrainings;
     private String date;
+    private String day;
 
     public WeekTrainingDTO() {
         this.allTrainings = new ArrayList<>();
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
     }
 
     public List<TrainingDayDTO> getAllTrainings() {

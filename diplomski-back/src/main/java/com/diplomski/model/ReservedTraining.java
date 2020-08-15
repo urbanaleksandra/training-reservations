@@ -31,4 +31,7 @@ public class ReservedTraining {
 
     @Column
     private boolean deleted;
+
+    @Column
+    private String date;
 }

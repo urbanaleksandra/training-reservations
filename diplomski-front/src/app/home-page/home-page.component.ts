@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoginService } from '../service/login.service';
 import { Router } from '@angular/router';
 import { UserService } from '../service/user.service';
@@ -6,7 +6,8 @@ import { TrainingService } from '../service/training.service';
 import { WeekTraining } from '../model/WeekTraining';
 import { TrainingDay } from '../model/TrainingDay';
 import { timer } from 'rxjs';
-import { ConditionalExpr } from '@angular/compiler';
+import { NewTrainingDialogComponent } from '../new-training-dialog/new-training-dialog.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home-page',
@@ -15,7 +16,7 @@ import { ConditionalExpr } from '@angular/compiler';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private router: Router, public service: UserService, private trainingService : TrainingService) { }
+  constructor(private modalService: NgbModal, private loginService: LoginService, private router: Router, public service: UserService, private trainingService : TrainingService) { }
 
   weekTrainings : WeekTraining[] = [];
   trainings : TrainingDay[] = [];
@@ -26,6 +27,7 @@ export class HomePageComponent implements OnInit {
   firstInWeek : Date;
   today : Date;
   endTime : any;
+  @ViewChild(NewTrainingDialogComponent) childNewTraining: NewTrainingDialogComponent;
 
   ngOnInit(): void {
     
@@ -41,10 +43,6 @@ export class HomePageComponent implements OnInit {
     this.trainingService.getAllTrainings().subscribe(data=>{
       this.weekTrainings = data;
       this.trainings = this.weekTrainings[0].allTrainings;
-
-      for(let weekTraining of this.weekTrainings){
-        weekTraining.day = weekTraining.allTrainings[0].day;
-      }
 
       this.selectedItem = this.weekTrainings[0];
       this.date = this.weekTrainings[0].date;
@@ -97,6 +95,10 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  openNewTrainingDialog(){
+    const modalRef = this.modalService.open(NewTrainingDialogComponent);
+  }
+
   datesAreOnSameDay = (first : Date, second : Date) => {
     return first.getFullYear() === second.getFullYear() && first.getMonth() === second.getMonth() && first.getDate() === second.getDate();
   }
@@ -114,7 +116,7 @@ export class HomePageComponent implements OnInit {
 
   isActive(item) {
     return this.selectedItem === item;
-};
+  };
 
   isAdmin() {
     if (this.service.roles != null) {
@@ -145,5 +147,6 @@ export class HomePageComponent implements OnInit {
       return false;
     }
   }
+
 
 }

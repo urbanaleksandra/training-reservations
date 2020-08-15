@@ -63,21 +63,27 @@ public class TrainingDayServiceImpl implements TrainingDayService{
             switch (trainingDay.getDay().getDay()){
                 case "MONDAY" :
                     System.out.println("usao u mon");
+                    listMon.setDay("MONDAY");
                     listMon.getAllTrainings().add(mapToDTO(trainingDay));
                     break;
                 case "TUESDAY" :
+                    listTue.setDay("TUESDAY");
                     listTue.getAllTrainings().add(mapToDTO(trainingDay));
                     break;
                 case "WEDNESDAY" :
+                    listWed.setDay("WEDNESDAY");
                     listWed.getAllTrainings().add(mapToDTO(trainingDay));
                     break;
                 case "THURSDAY" :
+                    listThu.setDay("THURSDAY");
                     listThu.getAllTrainings().add(mapToDTO(trainingDay));
                     break;
                 case  "FRIDAY" :
+                    listFri.setDay("FRIDAY");
                     listFri.getAllTrainings().add(mapToDTO(trainingDay));
                     break;
                 case  "SATURDAY" :
+                    listSat.setDay("SATURDAY");
                     listSat.getAllTrainings().add(mapToDTO(trainingDay));
                     break;
             }
