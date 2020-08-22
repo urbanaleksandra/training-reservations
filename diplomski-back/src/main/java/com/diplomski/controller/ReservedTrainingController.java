@@ -20,9 +20,9 @@ public class ReservedTrainingController {
         return reservedTrainingService.schedule(reservedTrainingDTO);
     }
 
-    @GetMapping(value = "/{id}")
-    public int getNumberOfScheduled(@PathVariable Long id) {
-        return reservedTrainingService.getNumberOfScheduled(id);
+    @GetMapping(value = "/{id}/{date}")
+    public int getNumberOfScheduled(@PathVariable("id") Long id, @PathVariable("date") String date) {
+        return reservedTrainingService.getNumberOfScheduled(id, date);
     }
 
     @PostMapping(value = "confirm-arrival")

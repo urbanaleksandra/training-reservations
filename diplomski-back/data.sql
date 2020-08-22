@@ -1,11 +1,11 @@
 insert into user (username, password, first_name, last_name, email, enabled, deleted) values
-	('admin', '$2y$10$spitzJHmgij39g/9Ff/nOeJSIkyrwvoNUO7e24RElpt7JRmij9w26', 'Aleksandra', 'Urban', 'admin@gmail.com', true, false),
-    ('GYM-pera97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Pera', 'Peric', 'pera@gmail.com', true, false),
-    ('GYM-mika97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Mika', 'Mikic', 'mika@gmail.com', true, false),
-    ('somi97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Mihailo', 'Stanarevic', 'somi@gmail.com', true, false),
-    ('kaja97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Katarina', 'Urban', 'kacakaca5@gmail.com', true, false),
-    ('maja91', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Maja', 'Urban', 'maja@gmail.com', true, false),
-	('pera97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Pera', 'Peric', 'pera@gmail.com', true, false);
+	('admin', '$2y$10$spitzJHmgij39g/9Ff/nOeJSIkyrwvoNUO7e24RElpt7JRmij9w26', 'Aleksandra', 'Urban', 'urb.saska@gmail.com', true, false),
+    ('GYM-pera97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Pera', 'Peric', 'urb.saska@gmail.com', true, false),
+    ('GYM-mika97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Mika', 'Mikic', 'urb.saska@gmail.com', true, false),
+    ('somi97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Mihailo', 'Stanarevic', 'urb.saska@gmail.com', true, false),
+    ('kaja97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Katarina', 'Urban', 'urb.saska@gmail.com', true, false),
+    ('maja91', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Maja', 'Urban', 'urb.saska@gmail.com', true, false),
+	('pera97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Pera', 'Peric', 'urb.saska@gmail.com', true, false);
 insert into admin (id, user_id, deleted) values (1, 1, false);
 
 insert into employee (id, user_id, deleted) values

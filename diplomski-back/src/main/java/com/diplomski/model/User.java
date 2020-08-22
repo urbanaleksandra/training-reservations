@@ -49,15 +49,15 @@ public class User implements UserDetails {
     private boolean deleted;
 
     @JsonBackReference
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "user")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private Admin admin;
 
     @JsonBackReference
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "user")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private SimpleUser simpleUser;
 
     @JsonBackReference
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "user")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private Employee employee;
 
     @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)

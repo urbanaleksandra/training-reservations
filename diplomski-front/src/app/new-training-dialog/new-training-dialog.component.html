@@ -1,12 +1,90 @@
 <div class="modal-header color">
-    <h4 class="modal-title">Ad new training</h4>
+    <h4 class="modal-title">{{mode === 'update'? 'Update training and its schedule' : 'Add new training and its schedule'}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<div class="modal-body color">
-    Radi
+<div class="modal-body color" >
+    <form [formGroup]="validateForm">
+        <div style="padding: 10%; background: rgba(33, 36, 59, 0.7);">
+            <div class="form-group">
+                <label for="trainingName" style="width:50%">Training name</label>
+                <input type="text" class="form-control" formControlName="trainingName" name="trainingName" placeholder="Name" ngbPopover="Only letters and numbers allowed!" placement="right" popoverClass="popoverClass" triggers="mouseenter:mouseleave" popoverTitle="Rules">
+            </div>
+        
+            <div class="form-group">
+                <label for="trainerName" style="width:50%">Trainer</label>
+                <input type="text" class="form-control" name="trainerName" formControlName="trainerName" placeholder="Trainer full name" ngbPopover="Only letters allowed!" placement="right" popoverClass="popoverClass" triggers="mouseenter:mouseleave" popoverTitle="Rules">
+            </div>
+        
+            <div class="form-group">
+                <label for="capacity" style="width:50%">Capacity</label>
+                <input type="number" class="form-control" style="width:50%" formControlName="capacity" name="capacity" placeholder="Capacity" ngbPopover="Only numbers allowed!" placement="right" popoverClass="popoverClass" triggers="mouseenter:mouseleave" popoverTitle="Rules">
+            </div>
+        
+            <div class="form-group">
+                <label for="duration" style="width:50%">Duration</label>
+                <input type="number" class="form-control" style="width:50%" formControlName="duration" name="duration" placeholder="Duration" ngbPopover="Only numbers allowed!" placement="right" popoverClass="popoverClass" triggers="mouseenter:mouseleave" popoverTitle="Rules">
+            </div>
+        
+            <div class="form-group">
+                <label for="textArea">Description</label>
+                <textarea class="form-control" name="textArea" formControlName="description" rows="3" ngbPopover="Allowed letters, numbers, and !?., characters" placement="right" popoverClass="popoverClass" triggers="mouseenter:mouseleave" popoverTitle="Rules"></textarea>
+            </div>
+        </div>
+    </form>
+
+    <hr>
+
+    <div style="padding: 10%;">
+        <h4 *ngIf="mode==='new'" style="text-align: center;">Add days for this training to schedule:</h4>
+        <h4 *ngIf="mode==='update'" style="text-align: center;">Add or update days for this training to schedule:</h4>
+        <select class="custom-select" [(ngModel)]="dayOption">
+            <option value="MONDAY">Monday</option>
+            <option value="TUESDAY">Tuesday</option>
+            <option value="WEDNESDAY">Wednesday</option>
+            <option value="THURSDAY">Thursday</option>
+            <option value="FRIDAY">Friday</option>
+            <option value="SATURDAY">Saturday</option>
+        </select>
+
+        
+        <ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
+
+        <div class="row">
+            <div *ngIf="mode==='update'" style="margin-top: 15%; margin-left: 7%;" class="form-group">
+                <button type="button" class="btn btn-secondary" style="float: right;" (click)="addDateAndTime()">Update</button>
+            </div>
+
+            <div style="margin-top: 15%; margin-left: 40%;" class="form-group">
+                <button type="button" class="btn btn-secondary" style="float: right;" (click)="newDay()">Add new</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    <hr>
+    <h4>Schedule of this training:</h4>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Day</th>
+            <th scope="col">Time</th>
+            <th scope="col">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dayAndTime of daysAndTimes; let i = index">
+            <td><span style="color: white;">{{i+1}}</span></td>
+            <td><span style="color: white;">{{dayAndTime.day}}</span></td>
+            <td><span style="color: white;">{{dayAndTime.time}}</span></td>
+            <td><button type="button" class="btn btn-danger" style="background-color: #F5992E; color: #252D40; border: none;" (click)="removeDayAndTime(dayAndTime)">Remove</button></td>
+          </tr>
+        </tbody>
+      </table>
 </div>
 <div class="modal-footer color">
-    <button type="button" class="buttonDetails" (click)="activeModal.dismiss('Cross click')">Close</button>
+    <button type="button" class="buttonDetails" (click)="activeModal.dismiss('Cross click')" style="float: left;">Close</button>
+    <button type="button" class="buttonDetails" (click)="submitTraining()" style="float: right;">{{mode === 'update' ? 'Update' : 'Add'}}</button>
 </div>

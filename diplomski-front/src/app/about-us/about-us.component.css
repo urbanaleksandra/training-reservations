@@ -1,0 +1,49 @@
+#buttons li {
+  float: left;
+  list-style: none;
+  text-align: center;
+  background: rgba(33, 36, 59, 0.7);
+  width: 33%;
+  line-height: 30px;
+}
+
+#buttons li a {
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none;
+  color: #FFFFFF;
+  display: block;
+}
+
+#buttons li:hover {
+  text-decoration: none;
+  color: #000000;
+}
+
+.p{
+  color: #ffff;
+  margin: 0;
+  font-size: 0.8em;
+}
+
+.inputi{
+  width: 50%;
+  height: 50px;
+  background: rgba(33, 36, 59, 0.7);
+  border-radius: 0.2em;
+  color: #ffff;
+}
+
+.errorMessage{
+  padding: 0.3em;
+  text-decoration-style: bold;
+  font-size: 0.8em;
+  color: red;
+  background-color: transparent;
+  border: none;
+}
+
+.small1{
+  color: #F19529;
+}
+

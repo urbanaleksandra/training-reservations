@@ -9,6 +9,6 @@ public interface ReservedTrainingService {
 
     ResponseEntity<?> confirmArrival(ReservedTrainingDTO reservedTrainingDTO);
 
-    int getNumberOfScheduled(Long id);
+    int getNumberOfScheduled(Long id, String date);
 
 }

@@ -13,6 +13,10 @@
             <a class="link" style="color: #F19529;" (click)="openNewTrainingDialog()">Add new training</a>
           </li>
 
+          <li *ngIf="isAdmin()" class="nav-item">
+            <a class="link" style="color: #ffff;" (click)="getAllUsers()">Users</a>
+          </li>
+
           <li class="nav-item">
             <a class="link" routerLinkActive='active' [routerLink]="['/home-page']">Home</a>
           </li>
@@ -20,8 +24,8 @@
             <a class="link" style="color: #ffff;" routerLinkActive='active' [routerLink]="['/user-profile']">Profile</a>
           </li>
           <!-- info -->
-          <li *ngIf="isSimpleUser()" class="nav-item">
-            <a class="link" style="color: #ffff;">About us</a>
+          <li *ngIf="isSimpleUser()" class="nav-item"> 
+            <a class="link" style="color: #ffff;"  routerLinkActive='active' [routerLink]="['/about-us']">Contact</a>
           </li>
           <li class="nav-item">
             <a class="link" (click)="logout()" style="color: #ffff;">Log out</a>
@@ -47,7 +51,7 @@
     </div>
 
     <div *ngFor="let training of trainings">
-      <app-card [date]="date" [training]="training"></app-card>
+      <app-card [date]="date" [training]="training" (passNewTrainingDays)="updatedTrainingDays()"></app-card>
     </div>
 
 

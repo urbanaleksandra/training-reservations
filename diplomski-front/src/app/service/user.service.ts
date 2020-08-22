@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserLogin } from '../model/UserLogin';
+import { ContactForm } from '../model/ContactForm';
+import { Observable } from 'rxjs';
+import { User } from '../model/User';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +50,10 @@ export class UserService {
     return this.roles;
   }
 
+  sendMessage(contactForm : ContactForm){
+    return this.http.post('http://localhost:9000/user/send-message', contactForm);
+  }
+
   getRoleName() {
     if(this.roles != null) {
       if(this.roles[0].name == "ROLE_ADMIN")
@@ -56,5 +63,14 @@ export class UserService {
       else
         return "employee";
     }
+  }
+
+  getAllUsers() : Observable<any>{
+    return this.http.get<User[]>('http://localhost:9000/user/all');
+  }
+
+
+  unblock(username : String){
+    return this.http.put('http://localhost:9000/user/unblock', username);
   }
 }

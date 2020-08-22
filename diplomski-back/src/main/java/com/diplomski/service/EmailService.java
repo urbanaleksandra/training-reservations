@@ -1,5 +1,6 @@
 package com.diplomski.service;
 
+import com.diplomski.dto.ContactFormDTO;
 import com.diplomski.model.User;
 import com.diplomski.registration.VerificationToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,24 @@ public class EmailService {
             javaMailSender.send(mail);
         }
         catch( Exception e ){
+            System.out.println("javaMailSender.send(mail) nije prosao");
+        }
+    }
+
+    @Async
+    public void sendMessage(ContactFormDTO contactFormDTO) throws MailException, InterruptedException {
+        System.out.println("Slanje emaila...");
+
+        SimpleMailMessage mail = new SimpleMailMessage();
+        mail.setTo("urb.saska@gmail.com");
+        mail.setSubject(contactFormDTO.getSubject());
+        mail.setFrom(env.getProperty("spring.mail.username"));
+        mail.setText(contactFormDTO.getName() + " which email is: " + contactFormDTO.getEmail() + ", send you a message: " + contactFormDTO.getMessage());
+        try{
+            javaMailSender.send(mail);
+        }
+        catch( Exception e ){
+            System.out.println(e);
             System.out.println("javaMailSender.send(mail) nije prosao");
         }
     }

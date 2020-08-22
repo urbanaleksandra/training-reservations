@@ -1,0 +1,87 @@
+<header>
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-blue">
+    <div class="container">
+      <a class="logo" href="#" routerLinkActive='active' [routerLink]="['/home-page']">GYM</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse  justify-content-end navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="link" routerLinkActive='active' [routerLink]="['/home-page']">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="link" style="color: #ffff;" routerLinkActive='active' [routerLink]="['/user-profile']">Profile</a>
+          </li>
+          <!-- info -->
+          <li class="nav-item">
+            <a class="link" style="color: #ffff;">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="link" (click)="logout()" style="color: #ffff;">Log out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container">
+
+    <div class="row" style="margin: 0 15%;">
+      <ul class="col col-lg-12 col-md-12 col-sm-12" id="buttons">
+        <li style="padding: 1em; border-right: #F5992E 3px solid;
+            border-top-left-radius: 0.25rem; border-bottom-left-radius: 0.25rem;">
+          <h4 style="color: #F5992E"><i class="fa fa-mobile" aria-hidden="true"></i></h4>
+          <h5 style="color: #F5992E">Mobile</h5>
+          <p class="p">+381 64 567 891</p>
+          <p class="p">+381 64 123 456</p>
+        </li>
+        <li style="padding: 1em; border-right: #F5992E 3px solid;">
+          <h4 style="color: #F5992E"><i class="fa fa-map-marker" aria-hidden="true"></i></h4>
+          <h5 style="color: #F5992E">Address</h5>
+          <p class="p">Danila Kisa 39, Novi Sad</p>
+          <p class="p">Bulevar Evrope 5, Novi Sad</p>
+        </li>
+        <li style="padding: 1em;  border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem;">
+          <h4 style="color: #F5992E"><i class="fa fa-envelope" aria-hidden="true"></i></h4>
+          <h5 style="color: #F5992E">Email</h5>
+          <p class="p">gym.training@gmail.com</p>
+          <p class="p">email.bla@gmail.com</p>
+        </li>
+      </ul>
+    </div>
+
+    <p style="text-align: center; color: #ffff; margin: 5% 0;">If you got any questions<br>please do not hesitate to
+      send us a message.</p>
+
+    <form (submit)="onSubmit()" class="text-center mt-5" name="myForm" novalidate>
+
+      <div class="input-group input-group-big">
+        <input class="input--style-1 inputi" type="text" name="name1"  [(ngModel)]="contactForm.name" placeholder="Your Name"
+          required="required"><br>
+      </div>
+
+      <div class="input-group input-group-big">
+        <input class="input--style-1 inputi" type="text" name="subject"  [(ngModel)]="contactForm.subject"
+          placeholder="Subject" required="required"><br>
+      </div>
+
+      <div class="input-group input-group-big">
+        <textarea class="input--style-1 inputi" type="text" name="message"  [(ngModel)]="contactForm.message"
+        placeholder="Message" required="required"></textarea><br>
+      </div>
+      <div class="alert alert-danger errorMessage" *ngIf="!messageValid">
+        Please enter message.</div>
+
+      <div class="text-center mt-3">
+        <button type="button" class="btn-orange" type="submit">Send message</button><br>
+        <small class="small1" >{{message}}</small>
+    </div>
+    </form>
+
+  </div>
+</section>

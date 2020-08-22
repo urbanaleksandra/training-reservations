@@ -1,6 +1,7 @@
 package com.diplomski.controller;
 
 import com.diplomski.dto.ReservedTrainingDTO;
+import com.diplomski.dto.TrainingDayDTO;
 import com.diplomski.dto.WeekTrainingDTO;
 import com.diplomski.model.ReservedTraining;
 import com.diplomski.model.User;
@@ -25,5 +26,9 @@ public class TrainingDayController {
         return trainingDayService.getAll();
     }
 
+    @GetMapping(value = "/training/{id}")
+    public List<TrainingDayDTO> getAllByTraining(@PathVariable Long id) {
+        return this.trainingDayService.findAllByTraining(id);
+    }
 
 }

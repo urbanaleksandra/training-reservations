@@ -14,7 +14,6 @@ import java.util.Set;
 @Setter
 @Builder
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Where(clause="deleted=0")
 @Table(name = "simple_user")
 public class SimpleUser {
@@ -23,7 +22,7 @@ public class SimpleUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @Column(unique = true)
+    @Column
     private String cardNumber;
 
     @Column
@@ -31,6 +30,9 @@ public class SimpleUser {
 
     @Column
     private boolean deleted;
+
+    @Column
+    private int violations;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "trainingPackage_id", referencedColumnName = "id")
@@ -42,4 +44,9 @@ public class SimpleUser {
 
     @OneToMany(cascade = CascadeType.REFRESH)
     private Set<ReservedTraining> reservedTrainings = new HashSet<>();
+
+    public SimpleUser() {
+        this.violations = 0;
+        this.reservedTrainings = new HashSet<>();
+    }
 }

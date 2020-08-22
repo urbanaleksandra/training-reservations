@@ -21,12 +21,11 @@
             </div>
 
             <div *ngIf="isAdmin()" class="div2 row">
-                <a class="btn btn-secondary updateDelete">Update</a><br>
-                <a class="btn btn-secondary updateDelete">Delete</a><br>
+                <a class="btn btn-secondary updateDelete" style="height: 40px;" (click)="updateTraining()">Update</a><br>
             </div>
 
             <div *ngIf="isEmployee()" class="div2 row">
-                <a (click)="confirmArrival()" style="height: 50%;" class="btn btn-secondary">Confirm arrival</a>
+                <a (click)="confirmArrival()" style="height: 40px;" class="btn btn-secondary">Confirm arrival</a>
             </div>
         </div>
     </div>

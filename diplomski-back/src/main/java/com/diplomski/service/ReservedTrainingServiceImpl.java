@@ -6,8 +6,13 @@ import com.diplomski.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -88,14 +93,45 @@ public class ReservedTrainingServiceImpl implements ReservedTrainingService {
     }
 
     @Override
-    public int getNumberOfScheduled(Long id) {
+    public int getNumberOfScheduled(Long id, String date) {
 
         Optional<TrainingDay> trainingDay = trainingDayRepository.findById(id);
-        if(trainingDay == null){
-            return 0;
-        }
         List<ReservedTraining> reservedTrainings = reservedTrainingRepository.findByTrainingDay(trainingDay.get());
 
-        return reservedTrainings.size();
+        List<ReservedTraining> retVal = new ArrayList<>();
+
+        if(reservedTrainings.size() > 0){
+            for(ReservedTraining rt : reservedTrainings){
+                if(rt.getDate().equals(date)){
+                    retVal.add(rt);
+                }
+            }
+        }
+
+        return retVal.size();
+    }
+
+    @Scheduled(cron = "0 58 23 * * *")
+    public void checkViolations(){
+
+        System.out.println("usaooooo");
+
+        List<ReservedTraining> reservedTrainings = reservedTrainingRepository.findAll();
+        Format dateFormat1 = new SimpleDateFormat("MM-dd-yyyy");
+        String todayDate = dateFormat1.format(new Date(System.currentTimeMillis()));
+
+        for(ReservedTraining rt : reservedTrainings){
+            if(rt.getDate().equals(todayDate) && !rt.isAttended()){
+                Optional<SimpleUser> simpleUser = simpleUserRepository.findById(rt.getSimpleUser().getId());
+                simpleUser.get().setViolations(simpleUser.get().getViolations()+1);
+                simpleUserRepository.save(simpleUser.get());
+
+                if(simpleUser.get().getViolations() >= 5){
+                    simpleUser.get().getUser().setEnabled(false);
+                    userRepository.save(simpleUser.get().getUser());
+                }
+            }
+        }
+        System.out.println("usao u ispis u 23:58");
     }
 }

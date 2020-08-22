@@ -8,6 +8,8 @@ import { TrainingDay } from '../model/TrainingDay';
 import { timer } from 'rxjs';
 import { NewTrainingDialogComponent } from '../new-training-dialog/new-training-dialog.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DayAndTime } from '../model/DayAndTime';
+import { UsersDialogComponent } from '../users-dialog/users-dialog.component';
 
 @Component({
   selector: 'app-home-page',
@@ -37,6 +39,7 @@ export class HomePageComponent implements OnInit {
     }
 
     this.getAllTrainings();
+    
   }
 
   getAllTrainings(){
@@ -91,12 +94,13 @@ export class HomePageComponent implements OnInit {
         });
       }
       
-
+      this.sortTrainings();
     });
   }
 
   openNewTrainingDialog(){
     const modalRef = this.modalService.open(NewTrainingDialogComponent);
+    modalRef.componentInstance.mode = 'new';
   }
 
   datesAreOnSameDay = (first : Date, second : Date) => {
@@ -106,6 +110,10 @@ export class HomePageComponent implements OnInit {
   logout() {
     this.loginService.removeToken();
     this.router.navigateByUrl("login");
+  }
+
+  getAllUsers(){
+    const modalRef = this.modalService.open(UsersDialogComponent);
   }
 
   selectedDay(weekTraining : WeekTraining){
@@ -148,5 +156,23 @@ export class HomePageComponent implements OnInit {
     }
   }
 
+  updatedTrainingDays(): void {
+    this.getAllTrainings();
+  }
 
+  sortTrainings() : void{
+    this.weekTrainings.forEach(weekTraining => {
+      this.sortTraining(weekTraining.allTrainings);
+    })
+  }
+
+  sortTraining(allTrainings: TrainingDay[]) {
+    allTrainings.sort(function(a, b){
+      console.log(a.startsAt.split(':')[0]);
+      console.log(parseInt(b.startsAt.split(':')[0]));
+      return parseInt(a.startsAt.split(':')[0]) - parseInt(b.startsAt.split(':')[0]);
+    });
+  }
+
+  
 }

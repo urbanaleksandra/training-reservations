@@ -2,10 +2,12 @@ package com.diplomski.controller;
 
 import com.diplomski.dto.UserDTO;
 import com.diplomski.model.Role;
+import com.diplomski.model.SimpleUser;
 import com.diplomski.model.User;
 import com.diplomski.model.UserTokenState;
 import com.diplomski.registration.VerificationToken;
 import com.diplomski.repository.RoleRepository;
+import com.diplomski.repository.SimpleUserRepository;
 import com.diplomski.repository.VerificationTokenRepository;
 import com.diplomski.security.TokenUtils;
 import com.diplomski.security.auth.JwtAuthenticationRequest;
@@ -50,6 +52,9 @@ public class AuthController {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private SimpleUserRepository simpleUserRepository;
 
     @Autowired
     private EmailService emailService;
@@ -124,7 +129,15 @@ public class AuthController {
         roles.add(role.get());
         user.setRoles(roles);
         logger.info("Successful registration!");
+
+        SimpleUser simpleUser = new SimpleUser();
+        simpleUser.setViolations(0);
+        simpleUser.setDeleted(false);
+        simpleUser.setUser(user);
+        user.setSimpleUser(simpleUser);
+
         user = userService.save(user);
+        simpleUserRepository.save(simpleUser);
 
         VerificationToken confirmationToken = new VerificationToken(user);
         verificationTokenRepository.save(confirmationToken);
