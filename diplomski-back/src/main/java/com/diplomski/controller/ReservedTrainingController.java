@@ -4,6 +4,7 @@ import com.diplomski.dto.ReservedTrainingDTO;
 import com.diplomski.model.ReservedTraining;
 import com.diplomski.service.ReservedTrainingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,12 @@ public class ReservedTrainingController {
 
     @PostMapping(value = "")
     public ResponseEntity<?> schedule(@RequestBody ReservedTrainingDTO reservedTrainingDTO){
-        return reservedTrainingService.schedule(reservedTrainingDTO);
+        try{
+            return reservedTrainingService.schedule(reservedTrainingDTO);
+        }catch (Exception e){
+            return new ResponseEntity<>(reservedTrainingDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     @GetMapping(value = "/{id}/{date}")

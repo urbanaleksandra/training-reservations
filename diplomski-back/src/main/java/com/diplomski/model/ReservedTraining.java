@@ -2,6 +2,7 @@ package com.diplomski.model;
 
 import lombok.*;
 import org.hibernate.annotations.Where;
+import org.springframework.data.jpa.repository.Lock;
 
 import javax.persistence.*;
 
@@ -12,6 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Where(clause="deleted=0")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class ReservedTraining {
 
     @Id

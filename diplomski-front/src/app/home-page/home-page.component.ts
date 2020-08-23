@@ -60,14 +60,9 @@ export class HomePageComponent implements OnInit {
           let month = this.firstInWeek.getMonth()+1;
           let year = this.firstInWeek.getFullYear();
           this.now1 = month + "-" + day + "-" + year;
-    
-          console.log(this.date);
-          console.log(this.firstInWeek);
-          console.log(day);
+
           this.today = new Date(this.now1); //prvi dan za trening
     
-          console.log(this.today);
-          console.log(this.now);
           if(this.datesAreOnSameDay(this.today, this.now)){
             for(let training of this.trainings){
     
@@ -78,12 +73,8 @@ export class HomePageComponent implements OnInit {
               this.endTime = this.endTime + ":00:00";
               let timeArr = this.endTime.split(":");
     
-              console.log(year);
-              console.log(day);
-              console.log(month);
               let timeB = new Date(year, month-1, day, timeArr[0], timeArr[1], timeArr[2]);
     
-              console.log("time b: " + timeB);
               if(this.now > timeB){
                 this.trainings = this.trainings.filter(item => item != training);
                 this.weekTrainings[0].allTrainings = this.trainings.filter(item => item != training);

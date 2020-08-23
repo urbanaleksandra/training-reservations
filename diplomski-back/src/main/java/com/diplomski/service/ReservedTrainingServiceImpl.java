@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -35,33 +38,40 @@ public class ReservedTrainingServiceImpl implements ReservedTrainingService {
     private ReservedTrainingRepository reservedTrainingRepository;
 
     @Override
+    @Transactional(rollbackFor = {RuntimeException.class},readOnly = false, propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
     public ResponseEntity<?> schedule(ReservedTrainingDTO reservedTrainingDTO) {
 
-        System.out.println("usao u schedule" + reservedTrainingDTO);
-        ReservedTraining reservedTraining = new ReservedTraining();
-        reservedTraining.setDeleted(false);
-        reservedTraining.setAttended(false);
-        reservedTraining.setDate(reservedTrainingDTO.getDate());
-
         Optional<TrainingDay> trainingDay = trainingDayRepository.findById(reservedTrainingDTO.getTrainingDay().getId());
-        reservedTraining.setTrainingDay(trainingDay.get());
+        int numberOfScheduled = getNumberOfScheduled(reservedTrainingDTO.getTrainingDay().getId(), reservedTrainingDTO.getDate());
+        if(trainingDay.get().getTraining().getCapacity() - numberOfScheduled > 0){
+            System.out.println("usao u schedule" + reservedTrainingDTO);
+            ReservedTraining reservedTraining = new ReservedTraining();
+            reservedTraining.setDeleted(false);
+            reservedTraining.setAttended(false);
+            reservedTraining.setDate(reservedTrainingDTO.getDate());
 
-        User user = userRepository.findByUsername(reservedTrainingDTO.getSimpleUser());
-        SimpleUser simpleUser = simpleUserRepository.findByUser(user);
-        reservedTraining.setSimpleUser(simpleUser);
+            reservedTraining.setTrainingDay(trainingDay.get());
 
-        List<ReservedTraining> alreadyReserved = reservedTrainingRepository.findBySimpleUser(simpleUser);
+            User user = userRepository.findByUsername(reservedTrainingDTO.getSimpleUser());
+            SimpleUser simpleUser = simpleUserRepository.findByUser(user);
+            reservedTraining.setSimpleUser(simpleUser);
 
-        if(alreadyReserved != null){
-            for(ReservedTraining rt : alreadyReserved){
-                if(rt.getTrainingDay().getId().equals(trainingDay.get().getId()) && rt.getDate().equals(reservedTrainingDTO.getDate())){
-                    return new ResponseEntity<String>("Already schedule.", HttpStatus.BAD_REQUEST);
+            List<ReservedTraining> alreadyReserved = reservedTrainingRepository.findBySimpleUser(simpleUser);
+
+            if(alreadyReserved != null){
+                for(ReservedTraining rt : alreadyReserved){
+                    if(rt.getTrainingDay().getId().equals(trainingDay.get().getId()) && rt.getDate().equals(reservedTrainingDTO.getDate())){
+                        return new ResponseEntity<String>("Already schedule.", HttpStatus.BAD_REQUEST);
+                    }
                 }
             }
+
+            reservedTrainingRepository.save(reservedTraining);
+            return new ResponseEntity<String>("OK", HttpStatus.OK);
         }
 
-        reservedTrainingRepository.save(reservedTraining);
-        return new ResponseEntity<String>("OK", HttpStatus.OK);
+        return new ResponseEntity<String>("Training capacity full.", HttpStatus.NOT_ACCEPTABLE);
+
     }
 
     @Override

@@ -16,10 +16,10 @@ import { DayAndTime } from '../model/DayAndTime';
 })
 export class CardComponent implements OnInit {
 
-  constructor(private modalService: NgbModal, private router: Router, private userService: UserService, private trainingService: TrainingService, private loginService : LoginService, public service: UserService) { }
+  constructor(private modalService: NgbModal, private router: Router, private userService: UserService, private trainingService: TrainingService, private loginService: LoginService, public service: UserService) { }
 
   @Input() training: TrainingDay;
-  @Input() date : string;
+  @Input() date: string;
   endTime: any;
   alreadySchedule: boolean;
   message: string;
@@ -29,7 +29,7 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.userService.currentUser == null){
+    if (this.userService.currentUser == null) {
       this.router.navigateByUrl("");
     }
 
@@ -38,25 +38,22 @@ export class CardComponent implements OnInit {
     this.endTime = this.training.training.duration + +this.training.startsAt.split(":")[0];
     if (this.endTime < 10) {
       this.endTime = "0" + this.endTime;
-    }else if(this.endTime >= 24){
+    } else if (this.endTime >= 24) {
       this.endTime = this.endTime - 24;
-      if(this.endTime < 10){
+      if (this.endTime < 10) {
         this.endTime = "0" + this.endTime;
       }
     }
 
-    console.log('blablabla');
-    console.log(this.training.startsAt.split(":")[1]);
 
     this.endTime = this.endTime + ":" + this.training.startsAt.split(":")[1];
-    console.log(this.endTime);
 
     this.alreadySchedule = false;
 
     this.getNumberOfScheduled(this.training, this.date);
   }
 
-  getNumberOfScheduled(training: TrainingDay, date : string) {
+  getNumberOfScheduled(training: TrainingDay, date: string) {
     this.trainingService.getNumberOfScheduled(training.id, date).subscribe(data => {
       this.numberOfScheduled = data;
       this.left = this.training.training.capacity - this.numberOfScheduled;
@@ -101,7 +98,7 @@ export class CardComponent implements OnInit {
     }
   }
 
-  confirmArrival(){
+  confirmArrival() {
     const modalRef = this.modalService.open(ConfirmArrivalComponent);
     modalRef.componentInstance.training = this.training;
     modalRef.componentInstance.date = this.date;
@@ -113,7 +110,7 @@ export class CardComponent implements OnInit {
       let body = {
         'trainingDay': this.training,
         'simpleUser': this.userService.currentUser.username,
-        'date' : this.date
+        'date': this.date
       }
 
       this.trainingService.scheduleTraining(body).subscribe(
@@ -123,7 +120,7 @@ export class CardComponent implements OnInit {
 
         }, error => {
 
-          console.log(error);
+          console.log("Error status schedule: " + error.status);
 
           if (error.status === 400) {
             console.log(error);
@@ -134,11 +131,16 @@ export class CardComponent implements OnInit {
             this.message = "Successfully scheduled.";
             this.alreadySchedule = true;
             setTimeout(() => this.alreadySchedule = false, 2000);
+          } else if (error.status === 406) {
+            this.message = "Training capacity full. You are late.";
+            this.alreadySchedule = true;
+            setTimeout(() => this.alreadySchedule = false, 2000);
           }
           this.getNumberOfScheduled(this.training, this.date);
 
         }
       );
+
     } else {
       this.message = "Training capacity full.";
       this.alreadySchedule = true;
@@ -161,7 +163,7 @@ export class CardComponent implements OnInit {
         this.passNewTrainingDays.emit();
       });
     });
-    
+
   }
 
 }
