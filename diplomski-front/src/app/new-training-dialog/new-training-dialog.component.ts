@@ -54,7 +54,6 @@ export class NewTrainingDialogComponent implements OnInit {
     })
     this.backup = new TrainingDay();
     this.backup = this.selectedTrainingDay;
-    console.log(this.trainingDays);
     if(this.mode === 'update'){
       this.setupData(this.trainingToUpdate);
     }

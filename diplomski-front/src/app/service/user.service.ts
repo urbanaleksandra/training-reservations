@@ -20,7 +20,6 @@ export class UserService {
     return this.http.get('http://localhost:9000/user').subscribe(
       res => {
         if (res !== null) {
-          console.log(res);
           this.currentUser = res;
           this.roles = res["roles"];
         }

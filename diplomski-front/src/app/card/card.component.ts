@@ -114,15 +114,11 @@ export class CardComponent implements OnInit {
 
       this.trainingService.scheduleTraining(body).subscribe(
         result => {
-          console.log('prosao schedule' + result);
           this.getNumberOfScheduled(this.training, this.date);
 
         }, error => {
 
-          console.log("Error status schedule: " + error.status);
-
           if (error.status === 400) {
-            console.log(error);
             this.message = "You already schedule it.";
             this.alreadySchedule = true;
             setTimeout(() => this.alreadySchedule = false, 2000);

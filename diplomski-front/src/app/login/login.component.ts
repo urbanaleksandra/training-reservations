@@ -22,16 +22,13 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.user);
     this.service.login(this.user).subscribe(
       result => {
         if(!this.service.isTokenValid()) {
-          console.log('nije validan token');
           this.message = "This user does not exist."
           this.user = new UserLogin();
           this.router.navigateByUrl("");
         } else {
-          console.log('validan token');
           this.userService.initUser();
           this.router.navigateByUrl("home-page");
         }  

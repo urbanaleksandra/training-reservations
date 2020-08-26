@@ -15,7 +15,6 @@ export class LoginService {
   login(user: UserLogin) {
     return this.http.post('http://localhost:9000/auth/login', user)
       .pipe(map((res) => {
-        console.log("uspeo login" + res);
         this.access_token = res["accessToken"];
       }));
   }

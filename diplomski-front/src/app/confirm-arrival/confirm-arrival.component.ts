@@ -25,7 +25,6 @@ export class ConfirmArrivalComponent implements OnInit {
   }
 
   onCodeResult(resultString: string): void {
-    console.log(this.result);
     this.result = resultString;
     if(this.result != ''){
       let body = {
@@ -36,14 +35,12 @@ export class ConfirmArrivalComponent implements OnInit {
 
       this.trainingService.confirmArrival(body).subscribe(
         result => {
-          console.log(result + 'usao u result');
 
         }, error => {
 
-          console.log(error);
 
           if (error.status === 400 && error.error === 'Already arrived.') {
-            console.log(error);
+            
             this.message = this.result.split(',')[1] + " already arrived.";
             this.alreadyArrived = true;
             setTimeout(() => this.alreadyArrived = false, 2000);

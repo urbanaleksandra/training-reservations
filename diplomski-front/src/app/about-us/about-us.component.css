@@ -3,7 +3,6 @@
   list-style: none;
   text-align: center;
   background: rgba(33, 36, 59, 0.7);
-  width: 33%;
   line-height: 30px;
 }
 
@@ -45,5 +44,17 @@
 
 .small1{
   color: #F19529;
+}
+
+@media (min-width: 240px) and (max-width: 768px) { 
+  .cards{
+      width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 3000px) { 
+  .cards{
+    width: 33%;
+}
 }
 

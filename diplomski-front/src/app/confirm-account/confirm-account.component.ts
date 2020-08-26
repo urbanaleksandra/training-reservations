@@ -17,7 +17,7 @@ export class ConfirmAccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
-      console.log(params['token']);
+      //console.log(params['token']);
       this.token = params['token'];
     });
 
