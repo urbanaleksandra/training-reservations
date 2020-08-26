@@ -1,5 +1,5 @@
 insert into user (username, password, first_name, last_name, email, enabled, deleted) values
-	('admin', '$2y$10$spitzJHmgij39g/9Ff/nOeJSIkyrwvoNUO7e24RElpt7JRmij9w26', 'Aleksandra', 'Urban', 'urb.saska@gmail.com', true, false),
+	('admin', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Aleksandra', 'Urban', 'urb.saska@gmail.com', true, false),
     ('GYM-pera97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Pera', 'Peric', 'urb.saska@gmail.com', true, false),
     ('GYM-mika97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Mika', 'Mikic', 'urb.saska@gmail.com', true, false),
     ('somi97', '$2y$10$ddb311ZFwLrO7ySNVYtXkuPosS/.hj9AacZef4FyxRI6l70.jqk3.', 'Mihailo', 'Stanarevic', 'urb.saska@gmail.com', true, false),
