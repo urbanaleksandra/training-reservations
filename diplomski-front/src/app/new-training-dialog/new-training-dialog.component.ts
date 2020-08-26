@@ -143,6 +143,7 @@ export class NewTrainingDialogComponent implements OnInit {
         });
       }else {
         this.trainingService.createNewTraining(body).subscribe(data => {
+          this.updatedTraining.emit(true);
           this.activeModal.close();
         });
       }

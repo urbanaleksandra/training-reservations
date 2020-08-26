@@ -17,11 +17,11 @@ insert into training_package (id, package_type, monthly_price, deleted) values
     (2, 1, 2000, false),
     (3, 2, 4000, false);
 
-insert into simple_user (id, user_id, card_number, date_of_last_payment, training_package_id, deleted) values
-	(1,4, '923456', '2020-07-26', 1, false),
-	(2,5, '235686', '2020-07-05', 2, false),
-	(3,6, '158585', '2020-07-20', 3, false),
-    (4,7, '333456', '2020-07-18', 2, false);
+insert into simple_user (id, user_id, card_number, date_of_last_payment, violations, training_package_id, deleted) values
+	(1,4, '923456', '2020-07-26', 0, 1, false),
+	(2,5, '235686', '2020-07-05', 0, 2, false),
+	(3,6, '158585', '2020-07-20', 0, 3, false),
+    (4,7, '333456', '2020-07-18', 0, 2, false);
 
 insert into roles (name, deleted) values ('ROLE_ADMIN', false),
     ('ROLE_EMPLOYEE', false),
@@ -37,10 +37,16 @@ insert into user_roles (user_id, role_id) values
     ( 7, 3);
 
 insert into permission (name, deleted) values ('user', false);
+insert into permission (name, deleted) values ('admin', false);
+insert into permission (name, deleted) values ('simple', false);
+insert into permission (name, deleted) values ('employee', false);
 
 insert into role_permissions (role_id, permission_id) values (1, 1);
 insert into role_permissions (role_id, permission_id) values (2, 1);
 insert into role_permissions (role_id, permission_id) values (3, 1);
+insert into role_permissions (role_id, permission_id) values (1, 2);
+insert into role_permissions (role_id, permission_id) values (2, 4);
+insert into role_permissions (role_id, permission_id) values (3, 3);
 
 insert into training (id, name, description, capacity, duration, deleted) values
     (1, 'Functional', 'Training for endurance of all body muscles', 20, 1, false),

@@ -8,6 +8,7 @@ import com.diplomski.model.User;
 import com.diplomski.service.TrainingDayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,11 +23,13 @@ public class TrainingDayController {
     private TrainingDayService trainingDayService;
 
     @GetMapping(value = "")
+    @PreAuthorize("hasAuthority('user')")
     public List<WeekTrainingDTO> getAll() {
         return trainingDayService.getAll();
     }
 
     @GetMapping(value = "/training/{id}")
+    @PreAuthorize("hasAuthority('user')")
     public List<TrainingDayDTO> getAllByTraining(@PathVariable Long id) {
         return this.trainingDayService.findAllByTraining(id);
     }

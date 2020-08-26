@@ -92,6 +92,9 @@ export class HomePageComponent implements OnInit {
   openNewTrainingDialog(){
     const modalRef = this.modalService.open(NewTrainingDialogComponent);
     modalRef.componentInstance.mode = 'new';
+    modalRef.componentInstance.updatedTraining.subscribe(updated => {
+      this.getAllTrainings();
+    });
   }
 
   datesAreOnSameDay = (first : Date, second : Date) => {
@@ -159,8 +162,7 @@ export class HomePageComponent implements OnInit {
 
   sortTraining(allTrainings: TrainingDay[]) {
     allTrainings.sort(function(a, b){
-      console.log(a.startsAt.split(':')[0]);
-      console.log(parseInt(b.startsAt.split(':')[0]));
+      
       return parseInt(a.startsAt.split(':')[0]) - parseInt(b.startsAt.split(':')[0]);
     });
   }

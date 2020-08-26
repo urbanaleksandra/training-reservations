@@ -41,7 +41,7 @@
 
     <div class="row">
       <ul class="col col-lg-12 col-md-12 col-sm-12" id="buttons">
-        <li *ngFor="let weekTraining of weekTrainings" (click)="selectedDay(weekTraining)" [ngClass]="{active1 : isActive(weekTraining)}" >
+        <li class="dayss" *ngFor="let weekTraining of weekTrainings" (click)="selectedDay(weekTraining)" [ngClass]="{active1 : isActive(weekTraining)}" >
           <a>{{weekTraining.day}}
             <br>
             <small>{{weekTraining.date}}</small>

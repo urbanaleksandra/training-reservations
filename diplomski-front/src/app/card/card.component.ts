@@ -33,7 +33,6 @@ export class CardComponent implements OnInit {
       this.router.navigateByUrl("");
     }
 
-    console.log(this.date);
 
     this.endTime = this.training.training.duration + +this.training.startsAt.split(":")[0];
     if (this.endTime < 10) {

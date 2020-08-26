@@ -32,13 +32,5 @@
 
 }
 
-::ng-deep .modal-content{
-    width: 150%;
-}
-
-::ng-deep .modal-dialog{
-    margin-left: 25%;
-}
-
 
 

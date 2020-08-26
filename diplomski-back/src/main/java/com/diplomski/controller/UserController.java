@@ -21,23 +21,25 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "")
-//    @PreAuthorize("hasAuthority('user')")
+    @PreAuthorize("hasAuthority('user')")
     public User getUser() {
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
     @GetMapping(value = "/all")
-//    @PreAuthorize("hasAuthority('user')")
+    @PreAuthorize("hasAuthority('user')")
     public List<UserDTO> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @PostMapping(value = "/send-message")
+    @PreAuthorize("hasAuthority('simple')")
     public ResponseEntity<?> sendMessage(@RequestBody ContactFormDTO contactFormDTO){
         return userService.sendMessage(contactFormDTO);
     }
 
     @PutMapping(value = "/unblock")
+    @PreAuthorize("hasAuthority('admin')")
     public ResponseEntity<?> unblock(@RequestBody String username){
         return userService.unblock(username);
     }

@@ -9,6 +9,10 @@
     }
   }
 
+  .row{
+    margin-left: 0;
+  }
+
   .small1{
     color: #F19529;
   }
