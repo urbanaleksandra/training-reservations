@@ -15,7 +15,6 @@ import { ConfirmAccountComponent } from './confirm-account/confirm-account.compo
 import { NewTrainingDialogComponent } from './new-training-dialog/new-training-dialog.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
-import { AnQrcodeModule } from 'an-qrcode';
 import { ConfirmArrivalComponent } from './confirm-arrival/confirm-arrival.component';
 import { ZXingScannerModule } from "@zxing/ngx-scanner";
 import { AboutUsComponent } from './about-us/about-us.component';
@@ -43,7 +42,6 @@ import { UsersDialogComponent } from './users-dialog/users-dialog.component';
     FormsModule,
     HttpClientModule,
     NgxQRCodeModule,
-    AnQrcodeModule,
     ZXingScannerModule,
     ReactiveFormsModule 
   ],
