@@ -1,6 +1,7 @@
 package com.diplomski.config;
 
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,9 @@ import java.io.IOException;
 
 @Component
 public class SimpleCorsFilter implements Filter {
+
+    @Value("${APP_CORS_ALLOWED_ORIGIN:http://localhost:4200}")
+    private String allowedOrigin;
 
     public SimpleCorsFilter() {
     }
@@ -19,7 +23,7 @@ public class SimpleCorsFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
-        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Origin", allowedOrigin);
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Methods", "*");
         response.setHeader("Access-Control-Max-Age", "86400");

@@ -15,19 +15,19 @@ export class TrainingService {
   constructor(private http: HttpClient) { }
   
   getAllTrainings() : Observable<WeekTraining[]>{
-    return this.http.get<WeekTraining[]>('http://localhost:9000/training-day');
+    return this.http.get<WeekTraining[]>(baseURI + 'training-day');
   }
 
   scheduleTraining(body : any){
-    return this.http.post('http://localhost:9000/reserved-training', body);
+    return this.http.post(baseURI + 'reserved-training', body);
   }
 
   getNumberOfScheduled(id : number, date : string){
-    return this.http.get<any>(`http://localhost:9000/reserved-training/${id}/${date}`);
+    return this.http.get<any>(baseURI + `reserved-training/${id}/${date}`);
   }
 
   confirmArrival(body : any){
-    return this.http.post('http://localhost:9000/reserved-training/confirm-arrival', body);
+    return this.http.post(baseURI + 'reserved-training/confirm-arrival', body);
   }
 
   createNewTraining(body: any): Observable<any> {

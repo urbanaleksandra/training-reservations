@@ -10,7 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "${APP_CORS_ALLOWED_ORIGIN:http://localhost:4200}")
 @RequestMapping(value = "/reserved-training")
 public class ReservedTrainingController {
 

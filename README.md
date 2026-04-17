@@ -1,23 +1,64 @@
-# GYM
+# Training Reservations Platform
 
-# Funkcionalnosti:
-  - Login
-  - Logout
-  - Registracija - pri registraciji šalje se verifikacioni mail.
-  
-# Uloge u sistemu: 
-  - Admin:
-    - uvid u sve treninge koji postoje u sistemu
-    - CRUD treninga (kao i rasporeda kada će se održavati isti)
-    - uvid u sve korisnike u sistemu
-    - unblock korisnika (korisnik je blokiran ukoliko se ne pojavi na više od 5 treninga koje je rezervisao, tada nije u mogućnosti da se prijavi na sistem)
-    
-  - Zaposleni:
-    - ima uvid u treninge koji još nisu prošli
-    - potvrđuje dolazak članova na trening skeniranjem njihovog QR koda preko kamere.
-    
-  - Korisnici teretane:
-    - ima uvid u treninge koji još nisu prošli
-    - prikaz ličnih podataka, uključujući njegov jedinstveni QR kod
-    - mogućnost kontaktiranja teretane (poruka se šalje adminu teretane na mail)
-    - rezervisanje treninga
+A full-stack gym management and training reservation system designed for real-world operations.  
+The platform streamlines scheduling, reservation, and on-site attendance verification through QR codes.
+
+## Overview
+
+This application supports three user roles (Admin, Employee, and Gym Member) and provides:
+- Secure authentication and role-based authorization
+- Training and schedule management
+- Online reservation workflow
+- QR-based attendance confirmation using a device camera
+- Account verification and gym contact via email
+
+## Key Functionalities
+
+### Authentication and Accounts
+- User registration with email verification
+- Login and logout
+- Role-based access control for protected operations
+
+### Training Management
+- Create, update, and manage trainings and training-day schedules
+- View upcoming trainings by role
+- Track training reservations per session
+
+### QR Attendance Verification
+- Each gym member has a unique QR code in their profile
+- At check-in, an employee scans the member QR code using the camera
+- The system confirms arrival and records attendance for the selected training
+
+### Communication
+- Contact form for gym members
+- Email notifications for registration confirmation and communication flows
+
+## User Roles and Permissions
+
+### Admin
+- Full visibility over all trainings
+- CRUD operations for trainings and schedules
+- Visibility over all users
+- Can unblock users automatically blocked after repeated no-shows
+
+### Employee
+- Access to upcoming trainings
+- Confirms member attendance by scanning QR codes with a camera
+
+### Gym Member
+- Access to upcoming trainings
+- Personal profile with unique QR code
+- Training reservation capability
+- Contact gym administration via email
+
+## Tech Stack
+
+- Backend: Spring Boot (`diplomski-back`)
+- Frontend: Angular (`diplomski-front`)
+- Database: MySQL
+- Auth: JWT-based authentication and authorization
+
+## Project Structure
+
+- `diplomski-back` - Spring Boot REST API, business logic, persistence, security
+- `diplomski-front` - Angular client application

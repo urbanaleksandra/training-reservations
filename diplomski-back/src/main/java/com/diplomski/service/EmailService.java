@@ -28,8 +28,9 @@ public class EmailService {
         mail.setTo(user.getEmail());
         mail.setSubject("Complete Registration!");
         mail.setFrom(env.getProperty("spring.mail.username"));
+        String frontendUrl = env.getProperty("APP_FRONTEND_URL", "http://localhost:4200");
         mail.setText("To confirm your account, please click here : "
-                +"http://localhost:4200/confirm-account?token="+confirmationToken.getConfirmationToken());
+                + frontendUrl + "/confirm-account?token=" + confirmationToken.getConfirmationToken());
         try{
             javaMailSender.send(mail);
         }

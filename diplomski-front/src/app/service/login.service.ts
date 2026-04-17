@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserLogin } from '../model/UserLogin';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,12 @@ import { map } from 'rxjs/operators';
 export class LoginService {
 
   constructor(private http: HttpClient) { }
+  private readonly baseURI = environment.baseURI;
 
   public access_token = null;
 
   login(user: UserLogin) {
-    return this.http.post('http://localhost:9000/auth/login', user)
+    return this.http.post(this.baseURI + 'auth/login', user)
       .pipe(map((res) => {
         this.access_token = res["accessToken"];
       }));
