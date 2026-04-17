@@ -21,6 +21,8 @@
     "@angular/platform-browser-dynamic": "~9.1.0",
     "@angular/router": "~9.1.0",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
+    "@zxing/browser": "^0.1.1",
+    "@zxing/library": "^0.19.1",
     "@zxing/ngx-scanner": "^3.0.0",
     "an-qrcode": "^1.0.5",
     "bootstrap": "^4.5.0",

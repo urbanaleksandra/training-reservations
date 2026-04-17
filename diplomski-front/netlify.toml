@@ -4,6 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "14"
+  NPM_FLAGS = "--legacy-peer-deps"
 
 # Angular client-side routes (refresh / deep links)
 [[redirects]]
