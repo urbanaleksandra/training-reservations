@@ -35,7 +35,7 @@
         <h4 style="color: #F5992E"><i class="fa fa-user"> {{user.username}}</i></h4>
         <h4 style="color: #F5992E; margin-bottom: 5%;"><i class="fa fa-envelope-o">  {{user.email}}</i></h4>
 
-        <qrcode [level]="2" [qrvalue]="value"></qrcode>
+        <ngx-qrcode [value]="value" errorCorrectionLevel="M"></ngx-qrcode>
   
     </div>
   </section>
