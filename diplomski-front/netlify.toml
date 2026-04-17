@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build -- --configuration production"
+  publish = "dist/diplomski-front"
+
+[build.environment]
+  NODE_VERSION = "14"
+
+# Angular client-side routes (refresh / deep links)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
