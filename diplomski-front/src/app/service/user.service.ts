@@ -4,11 +4,13 @@ import { UserLogin } from '../model/UserLogin';
 import { ContactForm } from '../model/ContactForm';
 import { Observable } from 'rxjs';
 import { User } from '../model/User';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private readonly baseURI = environment.baseURI;
 
   currentUser = null;
   roles = null;
@@ -17,7 +19,7 @@ export class UserService {
   }
 
   initUser() {
-    return this.http.get('http://localhost:9000/user').subscribe(
+    return this.http.get(this.baseURI + 'user').subscribe(
       res => {
         if (res !== null) {
           this.currentUser = res;
@@ -38,11 +40,11 @@ export class UserService {
   }
 
   addUser(user : UserLogin) {
-    return this.http.post("http://localhost:9000/auth/signup", user);
+    return this.http.post(this.baseURI + "auth/signup", user);
   }
 
   confirmAccount(token:String){
-    return this.http.get<UserLogin>('http://localhost:9000/auth/confirmAccount/'+token)
+    return this.http.get<UserLogin>(this.baseURI + 'auth/confirmAccount/' + token)
   }
 
   getRoles() {
@@ -50,7 +52,7 @@ export class UserService {
   }
 
   sendMessage(contactForm : ContactForm){
-    return this.http.post('http://localhost:9000/user/send-message', contactForm);
+    return this.http.post(this.baseURI + 'user/send-message', contactForm);
   }
 
   getRoleName() {
@@ -65,11 +67,11 @@ export class UserService {
   }
 
   getAllUsers() : Observable<any>{
-    return this.http.get<User[]>('http://localhost:9000/user/all');
+    return this.http.get<User[]>(this.baseURI + 'user/all');
   }
 
 
   unblock(username : String){
-    return this.http.put('http://localhost:9000/user/unblock', username);
+    return this.http.put(this.baseURI + 'user/unblock', username);
   }
 }

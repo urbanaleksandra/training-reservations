@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  baseURI: 'https://YOUR-BACKEND-URL.onrender.com/'
 };
